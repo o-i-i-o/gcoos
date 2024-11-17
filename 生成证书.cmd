@@ -1,131 +1,132 @@
 @echo off
 setlocal EnableDelayedExpansion
-title X509Ö¤ÊéÉú³É½Å±¾
+title gcoos v0.3a4
 echo.
-echo ---------------Windows»·¾³ÏÂX509Ö¤ÊéÉú³É½Å±¾------------------------------------------------------
+echo ---------------Windowsç¯å¢ƒä¸‹X509è¯ä¹¦ç”Ÿæˆè„šæœ¬------------------------------------------------------
 echo.
-echo ------------------×÷Õß£ºxiazhia-----------------------------------------------------------------
-echo ------------------Ver£º 0.3a4 ------------------------------------------------------------------
+echo ------------------ä½œè€…ï¼šoi-io-------------------------------------------------------------------
+echo  https://github.com/o-i-i-o/gcoos
+echo ------------------Verï¼š 0.3a4 ------------------------------------------------------------------
 echo.
-echo ---------------Ê¹ÓÃ´Ë½Å±¾Ç°ÇëÓÃÎÄ±¾¸ñÊ½´ò¿ª´Ë½Å±¾²¢ºË¶Ôopenssl»·¾³ÊÇ·ñÅäÖÃÕıÈ·-------------------
-echo ---------------»·¾³±äÁ¿°üÀ¨ÅäÖÃÎÄ¼şÂ·¾¶cnf\openssl.cnf£¬key¡¢csr¡¢crtÎÄ¼şÉú³ÉÂ·¾¶baseCA\certs----------------------
+echo ---------------ä½¿ç”¨æ­¤è„šæœ¬å‰è¯·ç”¨æ–‡æœ¬æ ¼å¼æ‰“å¼€æ­¤è„šæœ¬å¹¶æ ¸å¯¹opensslç¯å¢ƒæ˜¯å¦é…ç½®æ­£ç¡®-------------------
+echo ---------------ç¯å¢ƒå˜é‡åŒ…æ‹¬é…ç½®æ–‡ä»¶è·¯å¾„cnf\openssl.cnfï¼Œkeyã€csrã€crtæ–‡ä»¶ç”Ÿæˆè·¯å¾„baseCA\certs----------------------
 echo.
 echo.
 
 :ca
-set /p ca=ÊÇ·ñÒÑÉú³Éca£¨y/n£©:
+set /p ca=æ˜¯å¦å·²ç”Ÿæˆcaï¼ˆy/nï¼‰:
 IF /i "!ca!"=="y" goto start 
 IF /i "!ca!"=="n" goto mkca1
 exit
 
 :mkca1
-echo Í¨³£CA£¨¸ùÖ¤Êé£©Ö»ÓÃÉú³ÉÒ»´Î£¬ÊÇ·ñ¼ÌĞøÉú³É£¬ÈôbaseCAÎÄ¼ş¼ĞÏÂÒÑ´æÔÚcaÎÄ¼ş£¬½«±¨´íÍË³ö
-set /p mkcaa=ÊäÈëy¼ÌĞøÉú³ÉCA£¬·ñÔòÍË³ö£º
+echo é€šå¸¸CAï¼ˆæ ¹è¯ä¹¦ï¼‰åªç”¨ç”Ÿæˆä¸€æ¬¡ï¼Œæ˜¯å¦ç»§ç»­ç”Ÿæˆï¼Œè‹¥baseCAæ–‡ä»¶å¤¹ä¸‹å·²å­˜åœ¨caæ–‡ä»¶ï¼Œå°†æŠ¥é”™é€€å‡º
+set /p mkcaa=è¾“å…¥yç»§ç»­ç”ŸæˆCAï¼Œå¦åˆ™é€€å‡ºï¼š
 IF /i "!mkcaa!"=="y" Goto mkca2
 exit
 
 :mkca2
 set casubj=/C=CN/ST=GuiZhou/L=GuiYang/O=Organization/OU=IT/emailAddress=boss@oi-io.cc
 openssl req -new -x509 -days 3650 -keyout baseCA\ca.key -out baseCA\ca.crt -subj %casubj% -extensions v3_ca
-IF %ERRORLEVEL% NEQ 0 ( echo Éú³ÉÊ§°Ü£¬Çë¼ì²éÅäÖÃ£¬¼´½«ÍË³ö£¡
-exit ) else ( echo Éú³É³É¹¦£¬CA±£´æÔÚbaseCA\baseCA\ca.key¡¢baseCA\ca.crt£»ÇëÈ·¶¨caĞÅÏ¢ÊÇ·ñÕıÈ·
-echo ÈôĞèĞŞ¸ÄÀ©Õ¹ĞÅÏ¢£¬ÇëÖ±½ÓĞŞ¸Ä½Å±¾¶ÔÓ¦×Ö¶Î )
+IF %ERRORLEVEL% NEQ 0 ( echo ç”Ÿæˆå¤±è´¥ï¼Œè¯·æ£€æŸ¥é…ç½®ï¼Œå³å°†é€€å‡ºï¼
+exit ) else ( echo ç”ŸæˆæˆåŠŸï¼ŒCAä¿å­˜åœ¨baseCA\baseCA\ca.keyã€baseCA\ca.crtï¼›è¯·ç¡®å®šcaä¿¡æ¯æ˜¯å¦æ­£ç¡®
+echo è‹¥éœ€ä¿®æ”¹æ‰©å±•ä¿¡æ¯ï¼Œè¯·ç›´æ¥ä¿®æ”¹è„šæœ¬å¯¹åº”å­—æ®µ )
 
 :start
 echo.
-echo 0¡¢ÊäÈëÓòÃû»òIPµØÖ·
-echo ¼üÈë»Ø³µ¼üÌø¹ıµ±Ç°²ÎÊı£¬ÓòÃûÎª±ØÑ¡²ÎÊı£¨Îª´¿IPÉú³ÉÖ¤ÊéÊ±ÇëÖ±½ÓĞŞ¸Ä½Å±¾£©£¬·ñÔò±Ø±¨´í¡£
-set /p certname=ÇëÊäÈëÓòÃû£º
-if "%certname%" neq "" (echo ÄúÊäÈëµÄÓòÃûÎª£º%certname%)   else  ( echo Î´ÊäÈëÓòÃû£¬¼´½«ÍË³ö
+echo 0ã€è¾“å…¥åŸŸåæˆ–IPåœ°å€
+echo é”®å…¥å›è½¦é”®è·³è¿‡å½“å‰å‚æ•°ï¼ŒåŸŸåä¸ºå¿…é€‰å‚æ•°ï¼ˆä¸ºçº¯IPç”Ÿæˆè¯ä¹¦æ—¶è¯·ç›´æ¥ä¿®æ”¹è„šæœ¬ï¼‰ï¼Œå¦åˆ™å¿…æŠ¥é”™ã€‚
+set /p certname=è¯·è¾“å…¥åŸŸåï¼š
+if "%certname%" neq "" (echo æ‚¨è¾“å…¥çš„åŸŸåä¸ºï¼š%certname%)   else  ( echo æœªè¾“å…¥åŸŸåï¼Œå³å°†é€€å‡º
 Pause&exit)
 echo.
-set /p ipv4=ÇëÊäÈëIPv4µØÖ·£º
-if "%ipv4%" neq "" (echo.ÄúÊäÈëµÄipv4µØÖ·Îª£º%ipv4%
-set var2=Éè¶¨¿Õ²ÎÊı)  else (
+set /p ipv4=è¯·è¾“å…¥IPv4åœ°å€ï¼š
+if "%ipv4%" neq "" (echo.æ‚¨è¾“å…¥çš„ipv4åœ°å€ä¸ºï¼š%ipv4%
+set var2=è®¾å®šç©ºå‚æ•°)  else (
 set var2="IP.1"
-echo Î´ÊäÈëIPv4µØÖ· )
+echo æœªè¾“å…¥IPv4åœ°å€ )
 echo.
-set /p ipv6=ÇëÊäÈëipv6µØÖ·£º
-if "%ipv6%" neq "" (echo.ÄúÊäÈëµÄipv6µØÖ·Îª£º%ipv6%
-set var3=Éè¶¨¿Õ²ÎÊı) else (
+set /p ipv6=è¯·è¾“å…¥ipv6åœ°å€ï¼š
+if "%ipv6%" neq "" (echo.æ‚¨è¾“å…¥çš„ipv6åœ°å€ä¸ºï¼š%ipv6%
+set var3=è®¾å®šç©ºå‚æ•°) else (
 set var3="IP.2" 
-echo Î´ÊäÈëIPv6µØÖ· )
+echo æœªè¾“å…¥IPv6åœ°å€ )
 findstr /v "%var2% %var3%" "cnf\openssl.cnf" >> cnf/temp
-echo É¾³ıÎ´ÊäÈë²ÎÊıÔÚÅäÖÃÎÄ¼şÖĞµÄ¶ÔÓ¦×Ö¶Î
+echo åˆ é™¤æœªè¾“å…¥å‚æ•°åœ¨é…ç½®æ–‡ä»¶ä¸­çš„å¯¹åº”å­—æ®µ
 
-echo 1¡¢Éú³ÉË½Ô¿
-echo rsa¼æÈİĞÔ¸üºÃ£¬eccĞÔÄÜ¸üºÃ¡£
+echo 1ã€ç”Ÿæˆç§é’¥
+echo rsaå…¼å®¹æ€§æ›´å¥½ï¼Œeccæ€§èƒ½æ›´å¥½ã€‚
 :keytype
-set /p keytype=ÇëÑ¡ÔñÊäÈëË½Ô¿ÀàĞÍ£¨rsa/ecc£©:
+set /p keytype=è¯·é€‰æ‹©è¾“å…¥ç§é’¥ç±»å‹ï¼ˆrsa/eccï¼‰:
 IF /i "!keytype!"=="rsa" Goto :RSAKEY
 IF /i "!keytype!"=="ecc" Goto :ECCKEY
-Echo ÊäÈëÓĞÎó£¬ÇëÖØĞÂÊäÈë!
+Echo è¾“å…¥æœ‰è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥!
 Pause>Nul&Goto :keytype
 
 
 :ECCKEY
-echo ¼´½«Éú³ÉECCË½Ô¿
+echo å³å°†ç”ŸæˆECCç§é’¥
 openssl ecparam -genkey -name secp384r1 -out baseCA\certs\%certname%.key
-echo ÈôĞèĞŞ¸ÄECCË½Ô¿Ç¿¶È£¬ÇëÖ±½ÓĞŞ¸Ä½Å±¾µÄsecp384r1×Ö¶Î¡£
-echo ECCË½Ô¿±£´æÔÚbaseCA\certs\%certname%.key
+echo è‹¥éœ€ä¿®æ”¹ECCç§é’¥å¼ºåº¦ï¼Œè¯·ç›´æ¥ä¿®æ”¹è„šæœ¬çš„secp384r1å­—æ®µã€‚
+echo ECCç§é’¥ä¿å­˜åœ¨baseCA\certs\%certname%.key
 pause
 goto goon
 
 
 :RSAKEY
-echo ¼´½«Éú³ÉRSAË½Ô¿
+echo å³å°†ç”ŸæˆRSAç§é’¥
 openssl genrsa -out baseCA\certs\%certname%.key 2048
-echo ÈôĞèĞŞ¸ÄRSAË½Ô¿Ç¿¶È£¬ÇëÖ±½ÓĞŞ¸Ä½Å±¾µÄ2048×Ö¶Î¡£
-echo RSAË½Ô¿±£´æÔÚbaseCA\certs\%certname%.key
+echo è‹¥éœ€ä¿®æ”¹RSAç§é’¥å¼ºåº¦ï¼Œè¯·ç›´æ¥ä¿®æ”¹è„šæœ¬çš„2048å­—æ®µã€‚
+echo RSAç§é’¥ä¿å­˜åœ¨baseCA\certs\%certname%.key
 pause
 goto goon
 
 :goon
 echo.
-echo 2¡¢Éú³ÉÇëÇóÎÄ¼ş
+echo 2ã€ç”Ÿæˆè¯·æ±‚æ–‡ä»¶
 set crtsubj=/C=CN/ST=GuiZhou/L=GuiYang/O=Organization/OU=IT/CN=%certname%/emailAddress=boss@oi-io.cc
 openssl req -new   -key baseCA\certs\%certname%.key -out baseCA\certs\%certname%.csr -subj %crtsubj%
-echo ÈôĞèĞŞ¸ÄÀ©Õ¹ĞÅÏ¢£¬ÇëÖ±½ÓĞŞ¸Ä½Å±¾-subjºó¶ÔÓ¦×Ö¶Î¡£
-echo ÇëÇóÎÄ¼ş±£´æÔÚbaseCA\certs\%certname%.csr
+echo è‹¥éœ€ä¿®æ”¹æ‰©å±•ä¿¡æ¯ï¼Œè¯·ç›´æ¥ä¿®æ”¹è„šæœ¬-subjåå¯¹åº”å­—æ®µã€‚
+echo è¯·æ±‚æ–‡ä»¶ä¿å­˜åœ¨baseCA\certs\%certname%.csr
 pause
 
 echo.
-echo 3¡¢½«¿ÉÑ¡Ãû³ÆĞ´ÈëÅäÖÃÎÄ¼ş
+echo 3ã€å°†å¯é€‰åç§°å†™å…¥é…ç½®æ–‡ä»¶
 for /f "delims=" %%a in ('type cnf\temp') do (
 set "c=%%a"
 set "c=!c:DNS.1=DNS.1 = %certname%!"
 set "c=!c:IP.1=IP.1 = %ipv4%!"
 set "c=!c:IP.2=IP.2 = %IPV6%!"
 echo !c! >>cnf/%certname%.cnf )
-echo Ğ´Èëcnf/%certname%.cnfÍê³É£¡
-echo ´Ë´¦ĞèÇó£ºÌá¸ßĞ´ÈëĞÔÄÜ¡£
+echo å†™å…¥cnf/%certname%.cnfå®Œæˆï¼
+echo æ­¤å¤„éœ€æ±‚ï¼šæé«˜å†™å…¥æ€§èƒ½ã€‚
 pause
 
 echo.
-echo 4¡¢Éú³ÉÓÃ»§Ö¤Êé
-echo ĞèÇó£ºÊä´íÃÜÂë¿ÉÒÔÑ¡ÔñÖØĞÂÊäÈë¶ø²»ÊÇÖ±½ÓÍË³ö(ÃÜÂë´íÓĞerror password×Ö¶Î£©
+echo 4ã€ç”Ÿæˆç”¨æˆ·è¯ä¹¦
+echo éœ€æ±‚ï¼šè¾“é”™å¯†ç å¯ä»¥é€‰æ‹©é‡æ–°è¾“å…¥è€Œä¸æ˜¯ç›´æ¥é€€å‡º(å¯†ç é”™æœ‰error passwordå­—æ®µï¼‰
 openssl ca -in baseCA\certs\%certname%.csr -out baseCA\certs\%certname%.crt -cert baseCA\ca.crt -keyfile baseCA\ca.key -extensions v3_req -config cnf\%certname%.cnf -days 3650 
-IF %ERRORLEVEL% NEQ 0 ( echo É¾³ı»º´æÅäÖÃÎÄ¼ş
+IF %ERRORLEVEL% NEQ 0 ( echo åˆ é™¤ç¼“å­˜é…ç½®æ–‡ä»¶
 del cnf\temp 
-GOTO error ) else (echo É¾³ı»º´æÅäÖÃÎÄ¼ş
+GOTO error ) else (echo åˆ é™¤ç¼“å­˜é…ç½®æ–‡ä»¶
 del cnf\temp 
 GOTO OK)
 
 :OK
 echo.
-echo Éú³É³É¹¦£¬ÓÃ»§Ö¤Êé±£´æÔÚbaseCA\certs\%certname%.crt
-echo Ö¤ÊéÓĞĞ§ÆÚ3650Ìì£¬ÈôĞèĞŞ¸ÄÓĞĞ§ÆÚ£¬ÇëÖ±½ÓĞŞ¸Ä½Å±¾¶ÔÓ¦×Ö¶Î¡£
+echo ç”ŸæˆæˆåŠŸï¼Œç”¨æˆ·è¯ä¹¦ä¿å­˜åœ¨baseCA\certs\%certname%.crt
+echo è¯ä¹¦æœ‰æ•ˆæœŸ3650å¤©ï¼Œè‹¥éœ€ä¿®æ”¹æœ‰æ•ˆæœŸï¼Œè¯·ç›´æ¥ä¿®æ”¹è„šæœ¬å¯¹åº”å­—æ®µã€‚
 pause
 exit
 
 :error
 echo.
-ECHO ´íÎó
-echo É¾³ıÉú³ÉµÄÎÄ¼ş
+ECHO é”™è¯¯
+echo åˆ é™¤ç”Ÿæˆçš„æ–‡ä»¶
 del baseCA\certs\%certname%.key
 del baseCA\certs\%certname%.csr
 del cnf\%certname%.cnf
-Echo Çë¼ì²écaÃÜÂë»ò¸÷ÏîÅäÖÃ
+Echo è¯·æ£€æŸ¥caå¯†ç æˆ–å„é¡¹é…ç½®
 pause
 exit
 
