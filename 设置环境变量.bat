@@ -1,69 +1,73 @@
 @echo off
 setlocal EnableDelayedExpansion
 echo Ver0.3a2
-echo ±¾½Å±¾Ö»ĞèÒªÔËĞĞÒ»´Î£¬ÖØ¸´ÔËĞĞ»áÔì³É³ÌĞòÒì³££¡£¡£¡
-set /p aa=ÊÇ·ñ¼ÌĞø£¨y/n):
+echo æœ¬è„šæœ¬åªéœ€è¦è¿è¡Œä¸€æ¬¡ï¼Œé‡å¤è¿è¡Œä¼šé€ æˆç¨‹åºå¼‚å¸¸ï¼ï¼ï¼
+set /p aa=æ˜¯å¦ç»§ç»­ï¼ˆy/n):
 if /i "!aa!"=="y" goto bb
 exit
 
-echo  ÊäÈë1ÅäÖÃ°²×°Â·¾¶
-echo  ÊäÈë2ÅäÖÃCAÄ¬ÈÏÉèÖÃ
-echo  ÊäÈë3ÅäÖÃÖ¤ÊéÄ¬ÈÏÉèÖÃ
-set /p menu=ÇëÑ¡ÔñÅäÖÃÏîÄ¿:
+:bb
+echo  è¾“å…¥1é…ç½®å®‰è£…è·¯å¾„
+//echo  è¾“å…¥2é…ç½®CAé»˜è®¤è®¾ç½®
+//æš‚ä¸å¯ç”¨
+//echo  è¾“å…¥3é…ç½®è¯ä¹¦é»˜è®¤è®¾ç½®
+//æš‚ä¸å¯ç”¨
+set /p menu=è¯·é€‰æ‹©é…ç½®é¡¹ç›®:
 if /i "!menu!"=="1" goto path
 if /i "!menu!"=="2" goto cacnf
 if /i "!menu!"=="3" goto crtcnf
 
 
 :path
-echo ÉèÖÃ°²×°Â·¾¶£¬×Ö¶Î±ØĞëÒÔ\bin½áÎ²¡£
-set /p path=ÇëÊäÈëopenssl°²×°Â·¾¶£º
-echo ÄúÊäÈëµÄÂ·¾¶Îª%path%
+echo è®¾ç½®å®‰è£…è·¯å¾„ï¼Œå­—æ®µå¿…é¡»ä»¥\binç»“å°¾ã€‚
+set /p path=è¯·è¾“å…¥opensslå®‰è£…è·¯å¾„ï¼š
+echo æ‚¨è¾“å…¥çš„è·¯å¾„ä¸º%path%
 cd  %path%
-if exist openssl.exe (echo Â·¾¶ÉèÖÃ³É¹¦ ) else (echo µ±Ç°Â·¾¶ÏÂÎ´ÕÒµ½openssl.exe£¬Â·¾¶ÉèÖÃÊ§°Ü£¬¼´½«ÍË³ö£¡
+if exist openssl.exe (echo è·¯å¾„è®¾ç½®æˆåŠŸ ) else (echo å½“å‰è·¯å¾„ä¸‹æœªæ‰¾åˆ°openssl.exeï¼Œè·¯å¾„è®¾ç½®å¤±è´¥ï¼Œå³å°†é€€å‡ºï¼
+pause
 exit)
 
 :cacnf
-echo ÅäÖÃCAÄ¬ÈÏÉèÖÃ
-echo ÊäÈë"."´ú±íÁô¿Õ¡£
-set /p  cacn=ÇëÊäÈëÇ©·¢×éÖ¯£¨¸öÈË£©Ãû³Æ£¨Ó¢ÎÄ£©£º
-set /p  cac =ÇëÊäÈë¹ú¼ÒÃû³Æ£¨Á½Î»×ÖÄ¸´óĞ´£©£º
-set /p  cao =ÇëÊäÈë¹«Ë¾/µ¥Î»Ãû³Æ£º
-set /p  caou=ÇëÊäÈë²¿ÃÅÃû³Æ£º
-set /p  cast=ÇëÊäÈëÊ¡·İÃû³Æ£º
-set /p  cal =ÇëÊäÈë³ÇÊĞÃû³Æ£º
-set /p  caem=ÇëÊäÈëµç×ÓÓÊÏä£º
+echo é…ç½®CAé»˜è®¤è®¾ç½®
+echo è¾“å…¥"."ä»£è¡¨ç•™ç©ºã€‚
+set /p  cacn=è¯·è¾“å…¥ç­¾å‘ç»„ç»‡ï¼ˆä¸ªäººï¼‰åç§°ï¼ˆè‹±æ–‡ï¼‰ï¼š
+set /p  cac =è¯·è¾“å…¥å›½å®¶åç§°ï¼ˆä¸¤ä½å­—æ¯å¤§å†™ï¼‰ï¼š
+set /p  cao =è¯·è¾“å…¥å…¬å¸/å•ä½åç§°ï¼š
+set /p  caou=è¯·è¾“å…¥éƒ¨é—¨åç§°ï¼š
+set /p  cast=è¯·è¾“å…¥çœä»½åç§°ï¼š
+set /p  cal =è¯·è¾“å…¥åŸå¸‚åç§°ï¼š
+set /p  caem=è¯·è¾“å…¥ç”µå­é‚®ç®±ï¼š
 set casubj=/C=%cac%/ST=%cast%/L=%cal%/O=%cao%/OU=%caou%/CN=%cacn%/emailAddress=%caem%
 
 
 
 :crtcnf
-echo ÅäÖÃÖ¤ÊéÄ¬ÈÏÉèÖÃ
-echo ÊäÈë"."´ú±íÁô¿Õ¡£
-set /p  crtcn=ÇëÊäÈëÓòÃû£¨IPµØÖ·£©£º
-set /p  crtc =ÇëÊäÈë¹ú¼ÒÃû³Æ£¨Á½Î»×ÖÄ¸´óĞ´£©£º
-set /p  crto =ÇëÊäÈë¹«Ë¾/µ¥Î»Ãû³Æ£º
-set /p  crtu =ÇëÊäÈë²¿ÃÅÃû³Æ£º
-set /p  crtst=ÇëÊäÈëÊ¡·İÃû³Æ£º
-set /p  crtl =ÇëÊäÈë³ÇÊĞÃû³Æ£º
-set /p  crtem=ÇëÊäÈëµç×ÓÓÊÏä£º
+echo é…ç½®è¯ä¹¦é»˜è®¤è®¾ç½®
+echo è¾“å…¥"."ä»£è¡¨ç•™ç©ºã€‚
+set /p  crtcn=è¯·è¾“å…¥åŸŸåï¼ˆIPåœ°å€ï¼‰ï¼š
+set /p  crtc =è¯·è¾“å…¥å›½å®¶åç§°ï¼ˆä¸¤ä½å­—æ¯å¤§å†™ï¼‰ï¼š
+set /p  crto =è¯·è¾“å…¥å…¬å¸/å•ä½åç§°ï¼š
+set /p  crtu =è¯·è¾“å…¥éƒ¨é—¨åç§°ï¼š
+set /p  crtst=è¯·è¾“å…¥çœä»½åç§°ï¼š
+set /p  crtl =è¯·è¾“å…¥åŸå¸‚åç§°ï¼š
+set /p  crtem=è¯·è¾“å…¥ç”µå­é‚®ç®±ï¼š
 set crtsubj=/C=%crtc%/ST=%crtst%/L=%crtl%/O=%crto%/OU=%crtou%/CN=%crtcn%/emailAddress=%crtem%
 
-@echo ´´½¨Ö¤Êé¸ùÄ¿Â¼
+@echo åˆ›å»ºè¯ä¹¦æ ¹ç›®å½•
 mkdir baseCA
-echo ´´½¨%path%\baseCA³É¹¦¡£
+echo åˆ›å»º%path%\baseCAæˆåŠŸã€‚
 mkdir baseCA\certs
-echo ´´½¨%path%\baseCA\certs³É¹¦¡£
+echo åˆ›å»º%path%\baseCA\certsæˆåŠŸã€‚
 mkdir baseCA\newcerts
-echo ´´½¨%path%\baseCA\newcerts³É¹¦¡£
+echo åˆ›å»º%path%\baseCA\newcertsæˆåŠŸã€‚
 type nul >> baseCA\index.txt
-echo ´´½¨%path%\baseCA\index.txt³É¹¦¡£
+echo åˆ›å»º%path%\baseCA\index.txtæˆåŠŸã€‚
 echo 00 >> baseCA\serial
-echo ´´½¨%path%\baseCA\serial³É¹¦¡£
-echo ¸´ÖÆÅäÖÃÎÄ¼şµ½cnfÎÄ¼ş¼Ğ¡£
+echo åˆ›å»º%path%\baseCA\serialæˆåŠŸã€‚
+echo å¤åˆ¶é…ç½®æ–‡ä»¶åˆ°cnfæ–‡ä»¶å¤¹ã€‚
 mkdir cnf
 copy %~dp0\openssl.cnf  cnf\
-copy %~dp0\Éú³ÉÖ¤Êé.cmd Éú³ÉÖ¤Êé.cmd
-echo ºóĞøÇëÔÚ%path%ÔËĞĞ¡°Éú³ÉÖ¤Êé.cmd¡±
-start %~dp0Éú³ÉÖ¤Êé.cmd
+copy %~dp0\ç”Ÿæˆè¯ä¹¦.cmd ç”Ÿæˆè¯ä¹¦.cmd
+echo åç»­è¯·åœ¨%path%è¿è¡Œâ€œç”Ÿæˆè¯ä¹¦.cmdâ€
+start %~dp0ç”Ÿæˆè¯ä¹¦.cmd
 pause
