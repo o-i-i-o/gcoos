@@ -57,8 +57,8 @@ mkdir baseCA
 echo 创建%path%\baseCA成功。
 mkdir baseCA\certs
 echo 创建%path%\baseCA\certs成功。
-mkdir baseCA\newcerts
-echo 创建%path%\baseCA\newcerts成功。
+mkdir baseCA\pemcerts
+echo 创建%path%\baseCA\pemcerts成功。
 type nul >> baseCA\index.txt
 echo 创建%path%\baseCA\index.txt成功。
 echo 00 >> baseCA\serial
