@@ -23,9 +23,8 @@ echo 设置安装路径，字段必须以\bin结尾。
 set /p path=请输入openssl安装路径：
 echo 您输入的路径为%path%
 cd  %path%
-if exist openssl.exe (echo 路径设置成功 ) else (echo 当前路径下未找到openssl.exe，路径设置失败，即将退出！
-pause
-exit)
+if exist openssl.exe (echo 路径设置成功 ) else (echo 当前路径下未找到openssl.exe，路径设置失败,请重新输入！
+Pause>Nul&Goto :path)
 
 :cacnf
 echo 配置CA默认设置
