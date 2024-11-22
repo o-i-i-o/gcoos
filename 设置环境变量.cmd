@@ -83,9 +83,6 @@ set crtsubj=/C=%crtc%/ST=%crtst%/L=%crtl%/O=%crto%/OU=%crtou%/CN=%crtcn%/emailAd
 :ex
 @echo. 创建证书根目录
 
-mkdir cert-ca
-echo. 创建%path%\cert-ca成功。
-
 mkdir cert-ca\certs
 echo. 创建%path%\cert-ca\certs成功。
 
