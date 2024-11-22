@@ -97,6 +97,7 @@ echo. 创建%path%\baseCA\index.txt成功。
 
 echo. 00 >> baseCA\serial
 echo. 创建%path%\baseCA\serial成功。
+
 echo. 复制配置文件到cnf文件夹。
 
 mkdir cnf
