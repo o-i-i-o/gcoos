@@ -5,26 +5,21 @@ echo. Ver0.3a6
 echo. 本脚本只需要运行一次，重复运行会造成程序异常！！！
 
 set /p aa=是否继续（y/n):
-if /i "%aa%"=="y" goto :bb
+if /i "%aa%"=="y" goto :menu
 exit
 
-:bb
+:menu
 echo.  输入1配置安装路径
-
-//echo.  输入2配置CA默认设置
-
-//暂不可用
-
-//echo.  输入3配置证书默认设置
-
-//暂不可用
+echo.  输入2配置CA默认设置
+echo.  2暂不可用
+echo.  输入3配置证书默认设置
+echo.  3暂不可用
 
 set /p menu=请选择配置项目:
 
-if /i "!menu!"=="1" goto path
-if /i "!menu!"=="2" goto cacnf
-if /i "!menu!"=="3" goto crtcnf
-
+if /i "!menu!"=="1" goto :path  else exit
+if /i "!menu!"=="2" goto :cacnf else exit
+if /i "!menu!"=="3" goto :crtcnf else exit
 
 :path
 echo. 设置安装路径，字段必须以\bin结尾。
@@ -35,7 +30,8 @@ echo. 您输入的路径为%path%
 
 cd  %path%
 
-if exist openssl.exe (echo. 路径设置成功 ) else (echo. 当前路径下未找到openssl.exe，路径设置失败,请重新输入！
+if exist openssl.exe (echo. 路径设置成功 
+goto :ex ) else (echo. 当前路径下未找到openssl.exe，路径设置失败,请重新输入！
 
 Pause>Nul&Goto :path)
 
@@ -82,6 +78,8 @@ set /p  crtem=请输入电子邮箱：
 
 set crtsubj=/C=%crtc%/ST=%crtst%/L=%crtl%/O=%crto%/OU=%crtou%/CN=%crtcn%/emailAddress=%crtem%
 
+
+:ex
 @echo. 创建证书根目录
 
 mkdir baseCA
