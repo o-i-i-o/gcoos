@@ -86,16 +86,16 @@ set crtsubj=/C=%crtc%/ST=%crtst%/L=%crtl%/O=%crto%/OU=%crtou%/CN=%crtcn%/emailAd
 mkdir cert-ca
 echo. 创建%path%\cert-ca成功。
 
-mkdir baseCA\certs
+mkdir cert-ca\certs
 echo. 创建%path%\cert-ca\certs成功。
 
-mkdir baseCA\pemcerts
+mkdir cert-ca\pemcerts
 echo. 创建%path%\cert-ca\pemcerts成功。
 
-type nul >> baseCA\index.txt
+type nul >> cert-ca\index.txt
 echo. 创建%path%\cert-ca\index.txt成功。
 
-echo. 00 >> baseCA\serial
+echo. 00 >> cert-ca\serial
 echo. 创建%path%\cert-ca\serial成功。
 
 echo. 复制配置文件到cnf文件夹。
