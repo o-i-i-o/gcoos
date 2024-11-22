@@ -83,20 +83,20 @@ set crtsubj=/C=%crtc%/ST=%crtst%/L=%crtl%/O=%crto%/OU=%crtou%/CN=%crtcn%/emailAd
 :ex
 @echo. 创建证书根目录
 
-mkdir baseCA
-echo. 创建%path%\baseCA成功。
+mkdir cert-ca
+echo. 创建%path%\cert-ca成功。
 
 mkdir baseCA\certs
-echo. 创建%path%\baseCA\certs成功。
+echo. 创建%path%\cert-ca\certs成功。
 
 mkdir baseCA\pemcerts
-echo. 创建%path%\baseCA\pemcerts成功。
+echo. 创建%path%\cert-ca\pemcerts成功。
 
 type nul >> baseCA\index.txt
-echo. 创建%path%\baseCA\index.txt成功。
+echo. 创建%path%\cert-ca\index.txt成功。
 
 echo. 00 >> baseCA\serial
-echo. 创建%path%\baseCA\serial成功。
+echo. 创建%path%\cert-ca\serial成功。
 
 echo. 复制配置文件到cnf文件夹。
 
