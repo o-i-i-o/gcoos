@@ -1,5 +1,6 @@
 @echo off
 setlocal EnableDelayedExpansion
+chcp 65001
 title gcoos v0.3a4
 echo.
 echo ---------------Windows环境下X509证书生成脚本------------------------------------------------------
