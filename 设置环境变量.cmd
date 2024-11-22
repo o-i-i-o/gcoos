@@ -1,5 +1,6 @@
 @echo off
 setlocal EnableDelayedExpansion
+chcp 65001
 echo. Ver0.3a5
 echo. 本脚本只需要运行一次，重复运行会造成程序异常！！！
 set /p aa=是否继续（y/n):
