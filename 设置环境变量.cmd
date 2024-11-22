@@ -17,9 +17,10 @@ echo.  3暂不可用
 
 set /p menu=请选择配置项目:
 
-if /i "!menu!"=="1" goto :path  else exit
-if /i "!menu!"=="2" goto :cacnf else exit
-if /i "!menu!"=="3" goto :crtcnf else exit
+if /i "!menu!"=="1" goto :path  
+if /i "!menu!"=="2" goto :cacnf  
+if /i "!menu!"=="3" goto :crtcnf 
+exit
 
 :path
 echo. 设置安装路径，字段必须以\bin结尾。
