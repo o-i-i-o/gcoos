@@ -121,7 +121,8 @@ echo. 此处需求:提高写入性能.
 pause
 
 echo.
-echo. 4、生成用户证书
+echo. 4、生成用户证书.
+
 echo. 需求:输错密码可以选择重新输入而不是直接退出(密码错有error password字段）
 openssl ca -in baseCA\certs\%certname%.csr -out baseCA\certs\%certname%.crt -cert baseCA\ca.crt -keyfile baseCA\ca.key -extensions v3_req -config cnf\%certname%.cnf -days 3650 
 IF %ERRORLEVEL% NEQ 0 ( echo. 删除缓存配置文件
