@@ -22,6 +22,7 @@ exit
 
 :mkca1
 echo. 通常CA（根证书）只用生成一次，是否继续生成，若baseCA文件夹下已存在ca文件，将报错退出
+
 set /p mkcaa=输入y继续生成CA，否则退出：
 IF /i "!mkcaa!"=="y" Goto mkca2
 exit
@@ -30,25 +31,35 @@ exit
 set casubj=/C=CN/ST=GuiZhou/L=GuiYang/O=Organization/OU=IT/emailAddress=boss@oi-io.cc
 openssl req -new -x509 -days 3650 -keyout baseCA\ca.key -out baseCA\ca.crt -subj %casubj% -extensions v3_ca
 IF %ERRORLEVEL% NEQ 0 ( echo. 生成失败，请检查配置，即将退出！
+
 exit ) else ( echo. 生成成功，CA保存在baseCA\baseCA\ca.key、baseCA\ca.crt；请确定ca信息是否正确
+
 echo. 若需修改扩展信息，请直接修改脚本对应字段 )
 
 :start
 echo.
 echo. 0、输入域名或IP地址
+
 echo. 键入回车键跳过当前参数，域名为必选参数（为纯IP生成证书时请直接修改脚本），否则必报错。
+
 set /p certname=请输入域名：
+
 if "%certname%" neq "" (echo. 您输入的域名为：%certname%)   else  ( echo. 未输入域名，即将退出
+
 Pause&exit)
 echo.
 set /p ipv4=请输入IPv4地址：
+
 if "%ipv4%" neq "" (echo.您输入的ipv4地址为：%ipv4%
+
 set var2=设定空参数)  else (
 set var2="IP.1"
 echo. 未输入IPv4地址 )
 echo.
 set /p ipv6=请输入ipv6地址：
+
 if "%ipv6%" neq "" (echo.您输入的ipv6地址为：%ipv6%
+
 set var3=设定空参数) else (
 set var3="IP.2" 
 echo. 未输入IPv6地址 )
@@ -56,19 +67,25 @@ findstr /v "%var2% %var3%" "cnf\openssl.cnf" >> cnf/temp
 echo. 删除未输入参数在配置文件中的对应字段
 
 echo. 1、生成私钥
+
 echo. rsa兼容性更好，ecc性能更好。
+
 :keytype
 set /p keytype=请选择输入私钥类型（rsa/ecc）:
+
 IF /i "!keytype!"=="rsa" Goto :RSAKEY
 IF /i "!keytype!"=="ecc" Goto :ECCKEY
 Echo. 输入有误，请重新输入!
+
 Pause>Nul&Goto :keytype
 
 
 :ECCKEY
 echo. 即将生成ECC私钥
+
 openssl ecparam -genkey -name secp384r1 -out baseCA\certs\%certname%.key
 echo. 若需修改ECC私钥强度，请直接修改脚本的secp384r1字段。
+
 echo. ECC私钥保存在baseCA\certs\%certname%.key
 pause
 goto goon
